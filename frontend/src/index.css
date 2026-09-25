@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 150 15% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 15% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 15% 12%;
+
+    /* Pitch green — the brand colour. */
+    --primary: 142 72% 29%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 150 20% 96%;
+    --secondary-foreground: 150 15% 20%;
+
+    --muted: 150 16% 96%;
+    --muted-foreground: 150 8% 45%;
+
+    --accent: 142 60% 95%;
+    --accent-foreground: 142 72% 24%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 70% 34%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 45%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 150 12% 89%;
+    --input: 150 12% 89%;
+    --ring: 142 72% 29%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 200 22% 5%;
+    --foreground: 150 10% 96%;
+
+    --card: 200 20% 8%;
+    --card-foreground: 150 10% 96%;
+
+    --popover: 200 20% 8%;
+    --popover-foreground: 150 10% 96%;
+
+    --primary: 142 71% 45%;
+    --primary-foreground: 150 30% 6%;
+
+    --secondary: 200 16% 13%;
+    --secondary-foreground: 150 10% 92%;
+
+    --muted: 200 16% 13%;
+    --muted-foreground: 150 8% 62%;
+
+    --accent: 200 16% 15%;
+    --accent-foreground: 142 71% 60%;
+
+    --destructive: 0 62% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 65% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 82% 52%;
+    --warning-foreground: 150 20% 8%;
+
+    --border: 200 14% 17%;
+    --input: 200 14% 17%;
+    --ring: 142 71% 45%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Keep iOS from zooming when a form field is focused. */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  @media (min-width: 640px) {
+    input,
+    select,
+    textarea {
+      font-size: inherit;
+    }
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Yandex Maps injects its own copyright chrome; keep it out of our layout. */
+.ymaps-2-1-79-map,
+.ymaps-2-1-79-map * {
+  box-sizing: content-box;
+}

@@ -1,0 +1,26 @@
+server {
+    # Railway hands the port over at runtime; the nginx image renders this
+    # template with envsubst on start, and PORT defaults to 80 in the Dockerfile
+    # so a plain `docker run` still works.
+    listen ${PORT};
+    server_name _;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Hashed asset filenames are immutable, so they can be cached indefinitely.
+    location /assets/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        try_files $uri =404;
+    }
+
+    # React Router owns the routing table; every unknown path serves the shell.
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    gzip on;
+    gzip_types text/css application/javascript application/json image/svg+xml;
+    gzip_min_length 1024;
+}
